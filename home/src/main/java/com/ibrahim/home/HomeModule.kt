@@ -6,11 +6,12 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.FragmentComponent
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import retrofit2.Retrofit
 
 @Module(
     includes = [
-        HomeViewModel_HiltModule::class,
+        HomeViewModel_HiltModules::class,
         FragmentViewModelModule::class,
         AppModule::class
     ]
@@ -23,6 +24,7 @@ object HomeModule {
         return retrofit.create(IHomeRemoteDataSource::class.java)
     }
 
+    @ExperimentalCoroutinesApi
     @Provides
     fun provideHomeRepository(repository: HomeRepository): IHomeRepository {
         return repository

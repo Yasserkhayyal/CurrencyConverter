@@ -3,7 +3,6 @@ package com.ibrahim.home
 import com.ibrahim.core.Failure
 import com.ibrahim.currencyconverter.di.DispatchersIO
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -18,7 +17,6 @@ class HomeRepository @Inject constructor(
 ) :
     IHomeRepository {
     override fun getLatestExchangeRate(): Flow<HomeResult> {
-        Dispatchers.IO
         return flow {
             emit(HomeResult.Loading)
             try {

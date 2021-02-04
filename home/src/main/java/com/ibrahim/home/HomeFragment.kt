@@ -61,14 +61,16 @@ class HomeFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        DaggerHomeComponent.factory()
-            .homeComponent(
-                this,
+        DaggerHomeComponent.builder()
+            .context(this)
+            .appDependencies(
                 EntryPointAccessors.fromApplication(
                     requireContext().applicationContext,
                     AppDependencies::class.java
                 )
-            ).inject(this)
+            )
+            .build()
+            .inject(this)
     }
 
     override fun onCreateView(
